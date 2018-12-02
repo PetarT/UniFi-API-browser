@@ -638,9 +638,6 @@ function print_output($output_format, $data)
         case 'php_array':
             print_r($data);
             break;
-        case 'php_array_kint':
-            +d($data);
-            break;
         case 'php_var_dump':
             var_dump($data);
             break;
@@ -849,7 +846,6 @@ function get_client_version()
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">Nice but slow with large collections</li>
                             <li id="json_color"><a href="?output_format=json_color">JSON highlighted</a></li>
-                            <li id="php_array_kint"><a href="?output_format=php_array_kint">PHP array using Kint</a></li>
                         </ul>
                     </li>
                     <li id="user-menu" class="dropdown">

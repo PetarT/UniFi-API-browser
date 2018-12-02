@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f0e47718-457f-42f8-9696-0d0fa8229824" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/LICENCE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/build/kint-aante-light.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/build/kint-solarized-dark.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/build/kint-solarized.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/build/kint.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/composer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/composer.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/init.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/init_footer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/init_header.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/init_helpers.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/resources/compiled/aante-light.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/resources/compiled/original.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/resources/compiled/plain.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/resources/compiled/rich.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/resources/compiled/rich_microtime.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/resources/compiled/solarized-dark.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/resources/compiled/solarized.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Kint.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Blob.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Closure.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Color.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/DateTime.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Instance.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Method.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Nothing.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Parameter.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Representation.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Representation/Color.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Representation/Docstring.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Representation/Microtime.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Representation/Source.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Representation/SplFileInfo.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Resource.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Stream.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Throwable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/Trace.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Object/TraceFrame.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Base64.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Binary.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Blacklist.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/ClassMethods.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/ClassStatics.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Closure.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Color.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/DOMIterator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/DOMNode.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/DateTime.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/FsPath.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Iterator.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Json.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Microtime.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Plugin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Serialize.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/SimpleXMLElement.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/SplFileInfo.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/SplObjectStorage.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Stream.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Throwable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Timestamp.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/ToString.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Trace.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Parser/Xml.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Cli.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Plain.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Binary.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Blacklist.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Callable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Closure.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Color.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/ColorDetails.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/DepthLimit.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Docstring.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Microtime.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Nothing.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Plugin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Recursion.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/SimpleXMLElement.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Source.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/Timestamp.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Rich/TraceFrame.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Text.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Text/Blacklist.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Text/DepthLimit.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Text/Nothing.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Text/Plugin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Text/Recursion.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/Renderer/Text/Trace.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/kint-php/kint/src/SourceParser.php" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/composer.lock">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+              <folding>
+                <element signature="e#336#1984#0" />
+                <element signature="e#3973#5726#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/art-of-wifi/unifi-api-client/src/Client.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="1918" column="17" selection-start-line="1918" selection-start-column="17" selection-end-line="1918" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="299" column="32" lean-forward="true" selection-start-line="299" selection-start-column="32" selection-end-line="299" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/wingwifi/Application.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="24" column="28" lean-forward="true" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="26" column="32" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/config.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Kint</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/composer.lock" />
+        <option value="$PROJECT_DIR$/config.php" />
+        <option value="$PROJECT_DIR$/init_functions.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/config.js" />
+        <option value="$PROJECT_DIR$/config.json" />
+        <option value="$PROJECT_DIR$/src/wingwifi/Application.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 5.6.35">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/art-of-wifi/unifi-api-client" />
+      <path value="$PROJECT_DIR$/vendor/twbs/bootstrap" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1981" />
+    <option name="y" value="-24" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="wingwifi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wingwifi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wingwifi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wingwifi" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wingwifi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wingwifi" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="wingwifi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wingwifi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wingwifi" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../bin/php/php7.2.4/zend_ext/php_xdebug-2.6.0-7.2-vc15-x86_64.dll" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\wamp\www\wingwifi\data" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\wamp\www\wingwifi" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f0e47718-457f-42f8-9696-0d0fa8229824" name="Default Changelist" comment="" />
+      <created>1543692323388</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1543692323388</updated>
+      <workItem from="1543692324537" duration="4391000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4391000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49840257" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" sideWeight="0.50159746" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.3290461" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Remote Host" />
+      <window_info anchor="right" id="Database" weight="0.32995737" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TODO.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/kint-php/kint/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="119">
+            <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vouchers.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/favicon.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+          <folding>
+            <element signature="e#336#1984#0" />
+            <element signature="e#3973#5726#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/init_functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="143" column="52" selection-start-line="143" selection-start-column="52" selection-end-line="143" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/art-of-wifi/unifi-api-client/src/Client.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="1918" column="17" selection-start-line="1918" selection-start-column="17" selection-end-line="1918" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wingwifi/Application.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="24" column="28" lean-forward="true" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="299" column="32" lean-forward="true" selection-start-line="299" selection-start-column="32" selection-end-line="299" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
