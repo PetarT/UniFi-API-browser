@@ -45,7 +45,11 @@ class UniFiController
             Application::$config->site = '';
         }
 
-        self::$uniFiClient = new Client(Application::$config->username, Application::$config->password, Application::$config->location, Application::$config->site);
+        if (\is_null(self::$uniFiClient)) {
+            self::$uniFiClient = new Client(Application::$config->username, Application::$config->password, Application::$config->location, Application::$config->site);
+        } else {
+            self::$uniFiClient->logout();
+        }
 
         if (self::$uniFiClient->login() !== true) {
             throw new \RuntimeException('<p>Došlo je do problema pri povezivanju na UniFi kontroler!</p><p>Molimo Vas da kontaktirate korisničku podršku za dalje akcije.</p>');

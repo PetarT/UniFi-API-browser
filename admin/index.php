@@ -1351,12 +1351,12 @@ $(document).ready(function () {
         });
 
         clipboard.on('success', function (e) {
-            setTooltip(e.trigger, 'Copied!');
+            setTooltip(e.trigger, 'Iskopirano!');
             hideTooltip(e.trigger);
         });
 
         clipboard.on('error', function (e) {
-            setTooltip(e.trigger, 'Failed!');
+            setTooltip(e.trigger, 'Greška pri kopiranju!');
             hideTooltip(e.trigger);
             console.log('Copy to clipboard failed, most probably the selection is too large');
         });
@@ -1370,7 +1370,7 @@ $(document).ready(function () {
         function hideTooltip(btn) {
             setTimeout(function () {
                 $(btn).tooltip('hide')
-                .attr('data-original-title', 'Copy to clipboard');
+                .attr('data-original-title', 'Iskopiraj u privremenu memoriju');
             }, 1000);
         }
 

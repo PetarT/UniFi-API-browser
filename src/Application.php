@@ -23,6 +23,11 @@ class Application
     private $uniFiController = null;
 
     /**
+     * @var  \Twig_Environment  Twig renderer object.
+     */
+    private $twig = null;
+
+    /**
      * Application constructor. Inits basic data and loads configuration.
      * Also, it set ups session data and connection UniFi client.
      *
@@ -32,28 +37,58 @@ class Application
      */
     public function __construct($newInstance = false)
     {
-        $this->initConfig();
-        $this->initSession($newInstance);
-        $this->uniFiController = new Controllers\UniFiController();
+        try {
+            $this->initConfig();
+            $this->initSession($newInstance);
+            $this->initTwig();
+            $this->uniFiController = new Controllers\UniFiController();
+        } catch (\Exception $e) {
+            $this->render(
+                new Utilities\RequestDataUtility(
+                    array(
+                        'show' => 'error',
+                        'msg'  => $e->getMessage()
+                    )
+                )
+            );
+        }
     }
 
     /**
-     * Get Application response.
+     * Render output.
      *
-     * @param   array   $requestData  Request data.
-     * @param   string  $requestType  Request type.
+     * @param   Utilities\RequestDataUtility   $requestData  Request data.
      *
-     * @return  string  Application response.
+     * @return  string  Application output.
      */
-    public function getResponse($requestData = array(), $requestType = 'html')
+    public function render($requestData)
     {
-        if ($requestType == 'html') {
-            return '';
-        } elseif ($requestType == 'ajax') {
-            return $this->generateAjaxResponse();
-        }
+        try {
+            if (isset($requestData->type) && $requestData->type == 'ajax') {
+                return $this->generateAjaxResponse();
+            } else {
+                if (!isset($requestData->show) || empty($requestData->show)) {
+                    $template = $this->twig->load('sites_list.twig');
+                } else {
+                    switch ($requestData->show) {
+                        case 'site':
+                            $template = $this->twig->load('site_page.twig');
+                            break;
+                        case 'error':
+                            $template = $this->twig->load('error.twig');
+                            break;
+                        case 'sites':
+                        default:
+                            $template = $this->twig->load('sites_list.twig');
+                            break;
+                    }
+                }
 
-        return '';
+                return $template->render();
+            }
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     /**
@@ -101,6 +136,14 @@ class Application
         if (!isset($this->config->cookieTimeout)) {
             self::$config->cookieTimeout = 3600;
         }
+
+        if (!empty(self::$config->username)) {
+            self::$config->username = \trim(self::$config->username);
+        }
+
+        if (!empty(self::$config->location)) {
+            self::$config->location = \rtrim(\trim(self::$config->location), '/');
+        }
     }
 
     /**
@@ -117,11 +160,26 @@ class Application
                 time() - $_SESSION['last_activity'] > self::$config->cookieTimeout
             )
         ) {
-            session_unset();
-            session_destroy();
-            session_start();
+            \session_unset();
+            \session_destroy();
+            \session_start();
         }
 
-        $_SESSION['last_activity'] = time();
+        $_SESSION['last_activity'] = \time();
+    }
+
+    /**
+     * Method for loading Twig.
+     *
+     * @return  void
+     */
+    private function initTwig()
+    {
+        $loader = new \Twig_Loader_Filesystem(SITE_BASE . '/views');
+        $twig   = new \Twig_Environment($loader, array(
+            'cache' => SITE_BASE . '/cache',
+        ));
+
+        $this->twig = $twig;
     }
 }
