@@ -1,5 +1,5 @@
 # Ignore personal config file
 config.json
-/vendor/**
-/cache/**
+/vendor/
+/cache/
 .idea
