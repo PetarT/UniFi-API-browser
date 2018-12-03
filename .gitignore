@@ -1,3 +1,4 @@
 # Ignore personal config file
 config.json
-vendor/*
+/vendor/*
+/cache/*
