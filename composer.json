@@ -1,6 +1,17 @@
 {
+    "name": "WingWiFi",
+    "version": "1.0.0",
+    "description": "WingWiFi, solution for using UniFi controller in generating vouchers and reviewing them",
+    "type": "project",
+    "license": "MIT",
     "require": {
         "art-of-wifi/unifi-api-client": "^1.1",
-        "twbs/bootstrap": "^4.0.0"
+        "twig/twig" : "^2.0",
+        "kint-php/kint": "2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "WingWifi\\": "src/"
+        }
     }
 }

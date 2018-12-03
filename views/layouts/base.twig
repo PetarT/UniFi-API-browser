@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="sr">
+    <head>
+        {% block header %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ site_base }}/assets/css/bootstrap.min.css" />
+        <!-- FontAwesome CSS -->
+        <link rel="stylesheet" href="{{ site_base }}/assets/css/fontawesome.min.css" />
+        <title>WingWiFi Vaučeri</title>
+        {% endblock %}
+    </head>
+    <body>
+        <main role="main">
+            <div class="py-5 bg-light">
+                <div class="container">
+                    <div class="row">
+                    {% block main %}
+                    {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-muted">
+            {% import "footer.twig" %}
+        </footer>
+
+        {% block scripts %}
+        <script src="{{ site_base }}/assets/js/jquery.min.js"></script>
+        <script src="{{ site_base }}/assets/js/bootstrap.bundle.min.js"></script>
+        {% endblock %}
+    </body>
+</html>

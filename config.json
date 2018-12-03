@@ -1,0 +1,8 @@
+{
+    "username"           : "administrator",
+    "password"           : "testunifi12",
+    "location"           : "https://172.16.14.100:8443/",
+    "site"               : "Apartmani",
+    "sys_admin_username" : "administrator",
+    "sys_admin_password" : "testunifi12"
+}

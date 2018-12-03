@@ -1,6 +1,0 @@
-{
-    "controller_user" : "administrator",
-    "controller_pass" : "testunifi12",
-    "controller_site" : "https://172.16.14.100:8443/",
-    "controller_name" : "Apartmani"
-}
