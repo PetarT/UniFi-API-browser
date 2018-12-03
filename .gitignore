@@ -3,3 +3,5 @@ config.json
 vendor/
 cache/
 .idea
+!vendor/.gitignore
+!cache/.gitignore
