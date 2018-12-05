@@ -39,11 +39,11 @@ if (function_exists('curl_version')) {
  * in order to use the PHP $_SESSION array for temporary storage of variables, session_start() is required
  */
 session_start();
-/*
+
 if (!isset($_SESSION['admin_logged_in']) || empty($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] != true) {
-    header("Location: " . str_replace('index', 'login', strtok($_SERVER['REQUEST_URI'], '?')));
+    header('Location: login.php');
     exit;
-}*/
+}
 
 /**
  * check whether user has requested to clear (force expiry) the PHP session
@@ -1030,7 +1030,7 @@ function get_client_version()
                         <li role="separator" class="divider"></li>
                         <li id="reset_session" data-toggle="tooltip" data-container="body" data-placement="left"
                             data-original-title="U nekim slučajevima pomaže pri ponovnom učitavanju podataka">
-                            <a href="?reset_session=true"><i class="fa fa-refresh"></i> Resetuj učitana podešavanja</a>
+                            <a href="?reset_session=true"><i class="fa fa-sign-out"></i> Odjavi se</a>
                         </li>
                     </ul>
                 </li>

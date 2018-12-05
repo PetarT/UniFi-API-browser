@@ -12,10 +12,15 @@
     </head>
     <body>
         <main role="main">
+            <section class="jumbotron text-center">
+                <div class="container">
+                    {% block title %}{% endblock %}
+                </div>
+            </section>
             <div class="container">
                 <div class="row">
-                {% block main %}
-                {% endblock %}
+                    {% block main %}
+                    {% endblock %}
                 </div>
             </div>
         </main>

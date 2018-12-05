@@ -43,7 +43,7 @@ class Application
             $this->initTwig();
             $this->uniFiController = new Controllers\UniFiController();
         } catch (\Exception $e) {
-            $this->render(
+            echo $this->render(
                 new Utilities\RequestDataUtility(
                     array(
                         'show' => 'error',
@@ -51,6 +51,7 @@ class Application
                     )
                 )
             );
+            exit;
         }
     }
 
@@ -64,27 +65,43 @@ class Application
     public function render($requestData)
     {
         try {
+            $attr = array('home' => SITE_URI);
+
             if (isset($requestData->type) && $requestData->type == 'ajax') {
                 return $this->generateAjaxResponse();
             } else {
-                if (!isset($requestData->show) || empty($requestData->show)) {
-                    $template = $this->twig->load('sites_list.twig');
-                } else {
-                    switch ($requestData->show) {
-                        case 'site':
-                            $template = $this->twig->load('site_page.twig');
-                            break;
-                        case 'error':
-                            $template = $this->twig->load('error.twig');
-                            break;
-                        case 'sites':
-                        default:
-                            $template = $this->twig->load('sites_list.twig');
-                            break;
-                    }
+                if (!isset($requestData->show)) {
+                    $requestData->show = '';
                 }
 
-                return $template->render();
+                switch ($requestData->show) {
+                    case 'site':
+                        $template = $this->twig->load('site_page.twig');
+
+                        if (!empty($requestData->name)) {
+                            $this->uniFiController->setClientSite($requestData->name);
+                            $attr['site']     = $this->uniFiController->getSiteInfo();
+                            $attr['vouchers'] = $this->uniFiController->getVouchersList();
+                        }
+
+                        break;
+                    case 'error':
+                        $template = $this->twig->load('error.twig');
+
+                        if (!empty($requestData->msg)) {
+                            $attr['errorMsg'] = $requestData->msg;
+                        }
+
+                        break;
+                    case 'sites':
+                    default:
+                        $attr['sitesList'] = $this->uniFiController->getSitesList();
+                        $template          = $this->twig->load('sites_list.twig');
+
+                        break;
+                }
+
+                return $template->render($attr);
             }
         } catch (\Exception $e) {
             echo $e->getMessage();
@@ -178,7 +195,9 @@ class Application
         $loader = new \Twig_Loader_Filesystem(SITE_BASE . '/views');
         $twig   = new \Twig_Environment($loader, array(
             'cache' => SITE_BASE . '/cache',
+            'debug' => true
         ));
+        $twig->addExtension(new \Twig_Extension_Debug());
 
         $this->twig = $twig;
     }

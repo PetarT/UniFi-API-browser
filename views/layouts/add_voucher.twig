@@ -1,0 +1,45 @@
+<div class="modal fade" id="voucher_add" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="title">Keriranje novog vaučera</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Zatvori">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="form-group row">
+                        <label for="time" class="col-sm-4 col-form-label">Trajanje vaučera:</label>
+                        <select class="custom-select col-sm-8" id="time">
+                            <option value="15">15 minuta</option>
+                            <option value="30">30 minuta</option>
+                            <option value="60" selected>Sat vremena</option>
+                            <option value="180">3 sata</option>
+                            <option value="1140">Ceo dan</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                <button type="button" class="btn btn-primary" onclick="createVoucher()">Kreiraj</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function createVoucher() {
+        jQuery.ajax({
+            url  : '{{ home }}/index.php',
+            method: 'GET',
+            data : {
+                time   : jQuery('#time').val(),
+                action : 'createVoucher'
+            }
+        }).done(function () {
+            jQuery('#voucher_add').modal('hide');
+            location.reload(true);
+        });
+    }
+</script>

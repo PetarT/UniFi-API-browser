@@ -16,7 +16,7 @@ if (!empty($_GET['username']) && !empty($_GET['password'])) {
 
     if (empty($adminUser) || empty($adminPass) || ($adminUser == $username && $adminPass == $password)) {
         $_SESSION['admin_logged_in'] = true;
-        //header("Location: " . str_replace('login', 'index', strtok($_SERVER['REQUEST_URI'], '?')));
+        header("Location: " . str_replace('login', 'index', strtok($_SERVER['REQUEST_URI'], '?')));
     }
 }
 
@@ -46,17 +46,17 @@ if (!empty($_GET['username']) && !empty($_GET['password'])) {
             <div class="alert alert-danger alert-dismissible fade in" role="alert" id="invalid-login">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Zatvori"><span aria-hidden="true">&times;</span></button>
                 <h4>Korisničko ime ili lozinka nisu ispravni!</h4>
-                <p>Proverite unešenu lozinku i korisničko ime.</p>
+                <p>Proverite unete podatke.</p>
             </div>
             <?php endif; ?>
 
-            <form id="login" class="form-signin" style="max-width: 350px; margin: auto; padding-top: 100px;" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="GET">
+            <form id="login" class="form-signin" style="max-width: 350px; margin: auto; padding-top: 100px;" action="login.php" method="GET">
                 <h2 class="form-signin-heading">Prijavi se</h2>
                 <label for="username" class="sr-only">Korisničko ime</label>
-                <input type="text" id="username" class="form-control" placeholder="Korisničko ime" required autofocus>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Korisničko ime" required autofocus>
                 <label for="password" class="sr-only">Lozinka</label>
-                <input type="password" id="password" class="form-control" placeholder="Lozinka" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Prijava</button>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Lozinka" required>
+                <button class="btn btn-lg btn-primary btn-block" name="login" type="submit">Prijava</button>
             </form>
 
         </div>

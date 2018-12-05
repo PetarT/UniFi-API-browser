@@ -1,5 +1,18 @@
 {% extends "base.twig" %}
-
+{% block title %}<h1 class="jumbotron-heading">Lista čvorova</h1>{% endblock %}
 {% block main %}
-    Lista sajtova
+    {% for site in sitesList %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-text">{{ site.desc }}</h4>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a class="btn btn-sm btn-outline-secondary" href="{{ site.href }}">Prikaži vaučere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
