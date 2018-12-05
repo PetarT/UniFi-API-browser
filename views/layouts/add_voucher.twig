@@ -33,13 +33,20 @@
         jQuery.ajax({
             url  : '{{ home }}/index.php',
             method: 'GET',
+            dataType: 'json',
             data : {
                 time   : jQuery('#time').val(),
-                action : 'createVoucher'
+                action : 'createVoucher',
+                type   : 'ajax'
             }
-        }).done(function () {
+        }).done(function (data) {
+            if (data.status == true) {
+                location.reload(true);
+            } else {
+                // raise warning
+                console.log(data.message);
+            }
             jQuery('#voucher_add').modal('hide');
-            location.reload(true);
         });
     }
 </script>

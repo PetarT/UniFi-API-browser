@@ -68,7 +68,25 @@ class Application
             $attr = array('home' => SITE_URI);
 
             if (isset($requestData->type) && $requestData->type == 'ajax') {
-                return $this->generateAjaxResponse();
+                $response = true;
+                $msg      = '';
+
+                if (isset($requestData->action) && $requestData->action == 'createVoucher') {
+                    if (isset($requestData->time) && !empty($requestData->time)) {
+                        $status = $this->uniFiController->generateVoucher($requestData->time);
+                    } else {
+                        $status = $this->uniFiController->generateVoucher();
+                    }
+
+                    if ($status == false) {
+                        $response = false;
+                        $msg      = 'Error creating the voucher!';
+                    } else {
+                        $msg = 'Voucher successfully created!';
+                    }
+                }
+
+                return $this->generateAjaxResponse('', $response, $msg);
             } else {
                 if (!isset($requestData->show)) {
                     $requestData->show = '';
