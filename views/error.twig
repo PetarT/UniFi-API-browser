@@ -1,14 +1,16 @@
 {% extends "base.twig" %}
 
 {% block main %}
-    <div class="error-template">
-        <h1>Greška!</h1>
-        <h2>Došlo je do problema pri izvršavanju! </h2>
-        <div class="error-details">
-            {{ errorMsg }}
-        </div>
-        <div class="error-actions">
-            <a href="{{ home }}" class="btn btn-primary btn-lg"><span class="fa fa-home"></span> Vrati me na početnu stranicu</a>
+    <div class="row">
+        <div class="error-template">
+            <h1>Greška!</h1>
+            <h2>Došlo je do problema pri izvršavanju! </h2>
+            <div class="error-details">
+                {{ errorMsg }}
+            </div>
+            <div class="error-actions">
+                <a href="{{ home }}" class="btn btn-primary btn-lg"><span class="fa fa-home"></span> Vrati me na početnu stranicu</a>
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -125,6 +125,30 @@ class UniFiController
     }
 
     /**
+     * Function for removing the voucher.
+     *
+     * @param   string  $id  Voucher id.
+     *
+     * @return  bool  True on success, false otherwise.
+     */
+    public function removeVoucher($id)
+    {
+        return self::$uniFiClient->revoke_voucher($id);
+    }
+
+    /**
+     * Function for printing voucher.
+     *
+     * @param   string  $id  Voucher id.
+     *
+     * @return  void
+     */
+    public function printVoucher($id)
+    {
+        // TO-DO
+    }
+
+    /**
      * Function for getting list of UniFi sites.
      *
      * @return  array  Array of sites.

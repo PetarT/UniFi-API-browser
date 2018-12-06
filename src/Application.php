@@ -71,18 +71,35 @@ class Application
                 $response = true;
                 $msg      = '';
 
-                if (isset($requestData->action) && $requestData->action == 'createVoucher') {
-                    if (isset($requestData->time) && !empty($requestData->time)) {
-                        $status = $this->uniFiController->generateVoucher($requestData->time);
-                    } else {
-                        $status = $this->uniFiController->generateVoucher();
+                if (isset($requestData->action)) {
+                    if (!empty($requestData->site)) {
+                        $this->uniFiController->setClientSite($requestData->site);
                     }
 
-                    if ($status == false) {
-                        $response = false;
-                        $msg      = 'Error creating the voucher!';
-                    } else {
-                        $msg = 'Voucher successfully created!';
+                    if ($requestData->action == 'createVoucher') {
+                        if (isset($requestData->time) && !empty($requestData->time)) {
+                            $status = $this->uniFiController->generateVoucher($requestData->time);
+                        } else {
+                            $status = $this->uniFiController->generateVoucher();
+                        }
+
+                        if ($status == false) {
+                            $response = false;
+                            $msg      = 'Error creating the voucher!';
+                        } else {
+                            $msg = 'Voucher successfully created!';
+                        }
+                    } elseif($requestData->action == 'removeVoucher') {
+                        if (isset($requestData->id) && !empty($requestData->id)) {
+                            $status = $this->uniFiController->removeVoucher($requestData->id);
+
+                            if ($status == false) {
+                                $response = false;
+                                $msg      = 'Error removing the voucher!';
+                            } else {
+                                $msg = 'Voucher successfully removed';
+                            }
+                        }
                     }
                 }
 

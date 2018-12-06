@@ -1,45 +1,74 @@
 {% extends "base.twig" %}
 {% block title %}<h1 class="jumbotron-heading">Čvor {{ site.desc }}</h1><br /><h3>Lista vaučera</h3>{% endblock %}
 {% block main %}
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Kod</th>
-                <th scope="col">Kreiran</th>
-                <th scope="col">Ističe</th>
-                <th scope="col">Akcije</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@mdo</td>
-            </tr>
-        </tbody>
-    </table>
+{% if vouchers is not empty %}
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Kod</th>
+                    <th scope="col">Kreiran</th>
+                    <th scope="col">Trajanje</th>
+                    <th scope="col">Akcije</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set counter = 1 %}
+                {% for voucher in vouchers %}
+                <tr>
+                    <th scope="row">{{ counter }}</th>
+                    <td>{{ voucher.code }}</td>
+                    <td>{{ voucher.create_time|date('H:i d.m.Y') }}</td>
+                    <td>{{ voucher.duration }} minuta</td>
+                    <td>
+                        <div class="btn-group btn-group-xs">
+                            <button type="button" class="btn btn-xs" title="Obriši" onclick="removeVoucher('{{ voucher._id }}')"><i class="fas fa-trash"></i></button>
+                            <button type="button" class="btn btn-xs" title="Štampaj"><i class="fas fa-print"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                {% set counter = counter + 1 %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-<div class="btn-group">
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#voucher_add">Kreiraj vaučer</button>
-    <button type="button" class="btn btn-secondary" onclick="location='{{ home }}/index.php?view=sites_list'">Nazad na listu čvorova</button>
+<div class="row">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#voucher_add">Kreiraj vaučer</button>
+        <button type="button" class="btn btn-secondary" onclick="location='{{ home }}/index.php?view=sites_list'">Nazad na listu čvorova</button>
+    </div>
 </div>
+{% else %}
+<div class="row w-100">
+    <div class="alert alert-dark w-100" role="alert">
+        <p>Ne postoji ni jedan generisani vaučer za ovo čvorište. <a class="alert-link" href="{{ home }}/index.php?view=sites_list'">Kliknite ovde za nazad na listu čvorišta</a> ili <a class="alert-link" href="#" data-toggle="modal" data-target="#voucher_add">ovde za kreiranje novog vaučera</a>.</p>
+    </div>
+</div>
+{% endif %}
 {% include("layouts/add_voucher.twig") %}
+<script type="text/javascript">
+    function removeVoucher(id) {
+        jQuery.ajax({
+            url  : '{{ home }}/index.php',
+            method: 'GET',
+            dataType: 'json',
+            data : {
+                id     : id,
+                action : 'removeVoucher',
+                type   : 'ajax',
+                site   : '{{ site.name }}'
+            }
+        }).done(function (data) {
+            if (data.status == true) {
+                location.reload(true);
+            } else {
+                // raise warning
+                console.log(data.message);
+            }
+        });
+    }
+</script>
 {% endblock %}

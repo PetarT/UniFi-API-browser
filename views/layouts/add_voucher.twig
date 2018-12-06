@@ -37,7 +37,8 @@
             data : {
                 time   : jQuery('#time').val(),
                 action : 'createVoucher',
-                type   : 'ajax'
+                type   : 'ajax',
+                site   : '{{ site.name }}'
             }
         }).done(function (data) {
             if (data.status == true) {
