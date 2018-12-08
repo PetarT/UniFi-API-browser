@@ -179,4 +179,22 @@ class UniFiController
             }
         }
     }
+
+    /**
+     * Check if site exists in the list.
+     *
+     * @param   string  $site  Site name to lookup for.
+     *
+     * @return  bool  True if site exists, false otherwise.
+     */
+    public function siteExists($site)
+    {
+        foreach (self::$sites as $aSite) {
+            if ($site == $aSite->name) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

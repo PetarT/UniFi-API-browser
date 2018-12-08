@@ -2,6 +2,9 @@
 
 namespace WingWifi;
 
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+use Mike42\Escpos\Printer;
+
 /**
  * Class Application
  *
@@ -100,6 +103,19 @@ class Application
                                 $msg = 'Voucher successfully removed';
                             }
                         }
+                    } elseif ($requestData->action == 'printVoucher') {
+                        if (isset($requestData->code) && !empty($requestData->code)) {
+                            $connector = new NetworkPrintConnector(self::$config->printer_ip);
+                            $printer   = new Printer($connector);
+                            $printer->initialize();
+                            $printer->feed(2);
+                            $printer->text($requestData->code);
+                            $printer->feed(2);
+                            $printer->qrCode($requestData->code, Printer::QR_ECLEVEL_L, $size = 8);
+                            $printer->cut();
+                            $printer->pulse();
+                            $printer->close();
+                        }
                     }
                 }
 
@@ -132,6 +148,11 @@ class Application
                     default:
                         $attr['sitesList'] = $this->uniFiController->getSitesList();
                         $template          = $this->twig->load('sites_list.twig');
+
+                        if (!empty(self::$config->site) && $this->uniFiController->siteExists(self::$config->site)) {
+                            \header('Location: ' . SITE_URI . '/index.php?show=site&name=' . self::$config->site);
+                            exit();
+                        }
 
                         break;
                 }
@@ -196,10 +217,6 @@ class Application
         if (!empty(self::$config->location)) {
             self::$config->location = \rtrim(\trim(self::$config->location), '/');
         }
-
-        if (!empty(self::$config->site)) {
-            header('Location: ' . SITE_URI . '/index.php?show=site&name=' . self::$config->site);
-        }
     }
 
     /**
@@ -213,7 +230,7 @@ class Application
     {
         if ($newInstance ||
             (isset($_SESSION['last_activity']) &&
-                time() - $_SESSION['last_activity'] > self::$config->cookieTimeout
+                \time() - $_SESSION['last_activity'] > self::$config->cookieTimeout
             )
         ) {
             \session_unset();
