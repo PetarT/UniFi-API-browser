@@ -196,6 +196,10 @@ class Application
         if (!empty(self::$config->location)) {
             self::$config->location = \rtrim(\trim(self::$config->location), '/');
         }
+
+        if (!empty(self::$config->site)) {
+            header('Location: ' . SITE_URI . '/index.php?show=site&name=' . self::$config->site);
+        }
     }
 
     /**
