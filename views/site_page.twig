@@ -25,7 +25,7 @@
                     <td>
                         <div class="btn-group btn-group-xs">
                             <button type="button" class="btn btn-xs" title="Obriši" onclick="removeVoucher('{{ voucher._id }}')"><i class="fas fa-trash"></i></button>
-                            <button type="button" class="btn btn-xs" title="Štampaj" onclick="printVoucher('{{ voucher.code }}')"><i class="fas fa-print"></i></button>
+                            <button type="button" class="btn btn-xs" title="Štampaj" data-toggle="modal" data-target="#select_lang" data-code="{{ voucher.code }}"><i class="fas fa-print"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -48,7 +48,6 @@
     </div>
 </div>
 {% endif %}
-{% include("layouts/add_voucher.twig") %}
 <script type="text/javascript">
     function removeVoucher(id) {
         jQuery.ajax({
@@ -70,24 +69,9 @@
             }
         });
     }
-    function printVoucher(code) {
-        jQuery.ajax({
-            url  : '{{ home }}/index.php',
-            method: 'GET',
-            dataType: 'json',
-            data : {
-                action : 'printVoucher',
-                type   : 'ajax',
-                code   : code
-            }
-        }).done(function (data) {
-            if (data.status == true) {
-                console.log('PRINTED!');
-            } else {
-                // raise warning
-                console.log(data.message);
-            }
-        });
-    }
 </script>
+{% endblock %}
+{% block modals %}
+{% include("layouts/add_voucher.twig") %}
+{% include("layouts/select_lang.twig") %}
 {% endblock %}

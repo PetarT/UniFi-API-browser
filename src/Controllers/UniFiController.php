@@ -4,6 +4,9 @@ namespace WingWifi\Controllers;
 
 use UniFi_API\Client;
 use WingWifi\Application;
+use WingWifi\Utilities\RequestDataUtility;
+use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+use Mike42\Escpos\Printer;
 
 class UniFiController
 {
@@ -32,19 +35,19 @@ class UniFiController
     public function __construct()
     {
         if (empty(Application::$config)) {
-            throw new \RuntimeException('<p>Greška pri učitavanju konfiguracionog fajla!</p><p>Molimo Vas da kontaktirate korisničku podršku za dalje akcije.</p>');
+            throw new \RuntimeException("Greška pri učitavanju konfiguracionog fajla!\nMolimo Vas da kontaktirate korisničku podršku za dalje akcije.");
         }
 
         if (empty(Application::$config->username)) {
-            throw new \RuntimeException('<p>Konfiguracioni fajl ne sadrži korisničko ime!</p><p>Molimo Vas da kontaktirate korisničku podršku za dalje akcije.</p>');
+            throw new \RuntimeException("Konfiguracioni fajl ne sadrži korisničko ime!\nMolimo Vas da kontaktirate korisničku podršku za dalje akcije.");
         }
 
         if (empty(Application::$config->password)) {
-            throw new \RuntimeException('<p>Konfiguracioni fajl ne sadrži korisničku lozinku!</p><p>Molimo Vas da kontaktirate korisničku podršku za dalje akcije.</p>');
+            throw new \RuntimeException("Konfiguracioni fajl ne sadrži korisničku lozinku!\nMolimo Vas da kontaktirate korisničku podršku za dalje akcije.");
         }
 
         if (empty(Application::$config->location)) {
-            throw new \RuntimeException('<p>Konfiguracioni fajl ne sadrži lokaciju UniFi kontrolera!</p><p>Molimo Vas da kontaktirate korisničku podršku za dalje akcije.</p>');
+            throw new \RuntimeException("Konfiguracioni fajl ne sadrži lokaciju UniFi kontrolera!\nMolimo Vas da kontaktirate korisničku podršku za dalje akcije.");
         }
 
         // Set base site for the controller
@@ -59,7 +62,7 @@ class UniFiController
         }
 
         if (self::$uniFiClient->login() !== true) {
-            throw new \RuntimeException('<p>Došlo je do problema pri povezivanju na UniFi kontroler!</p><p>Molimo Vas da kontaktirate korisničku podršku za dalje akcije.</p>');
+            throw new \RuntimeException("Došlo je do problema pri povezivanju na UniFi kontroler!\nMolimo Vas da kontaktirate korisničku podršku za dalje akcije.");
         }
     }
 
@@ -139,13 +142,34 @@ class UniFiController
     /**
      * Function for printing voucher.
      *
-     * @param   string  $id  Voucher id.
+     * @param   RequestDataUtility  $requestData  Request data.
+     * @param   object              $config       Config object.
      *
-     * @return  void
+     * @return  bool  True on success, false otherwise.
      */
-    public function printVoucher($id)
+    public function printVoucher($requestData, $config)
     {
-        // TO-DO
+        try {
+            if (!empty($requestData->code)) {
+                $connector = new NetworkPrintConnector($config->printer_ip);
+                $printer   = new Printer($connector);
+                $lang      = empty($requestData->lang) ? 'en' : $requestData->lang;
+
+                $printer->initialize();
+                $printer->feed(1);
+                $printer->text($this->generateMessage($requestData->code, $config->wireless_name, $lang));
+                $printer->feed(1);
+                $printer->cut();
+                $printer->pulse();
+                $printer->close();
+            } else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -196,5 +220,34 @@ class UniFiController
         }
 
         return false;
+    }
+
+    /**
+     * Function for generating printout message.
+     *
+     * @param   string  $code  Voucher code, wireless password.
+     * @param   string  $wifi  Wireless client name.
+     * @param   string  $lang  Language to use on generating the message.
+     *
+     * @return  string  String for printout.
+     */
+    private function generateMessage($code, $wifi = 'WingWifi', $lang = 'en')
+    {
+        if (!empty($lang)) {
+            $lang = \json_decode(\file_get_contents(SITE_BASE . '/assets/lang/' . $lang . '.json'));
+        } else {
+            $lang = \json_decode(\file_get_contents(SITE_BASE . '/assets/lang/en.json'));
+        }
+
+        $message = '';
+
+        if (!empty($code) && !empty($wifi) && !empty($lang)) {
+            $message .= $lang->greetings . ",\n\n";
+            $message .= $lang->message . ":\n\n";
+            $message .= $lang->name . ": " . $wifi . "\n";
+            $message .= $lang->password . ": " . $code;
+        }
+
+        return $message;
     }
 }

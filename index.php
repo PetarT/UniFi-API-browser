@@ -2,7 +2,8 @@
 
 require_once './vendor/autoload.php';
 
-define('SITE_BASE', str_replace('src', '', __DIR__));
+error_reporting(0);
+define('SITE_BASE', __DIR__);
 define('SITE_URI', 'http://' . $_SERVER['SERVER_NAME']);
 
 // Make Application instance

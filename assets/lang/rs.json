@@ -1,0 +1,6 @@
+{
+  "greetings" : "Poštovani",
+  "message"   : "Ovaj vaučer sadrži lozinku i naziv mreže za pristup bežičnom internetu. Molimo Vas da pri povezivanju izaberete mrežu sa datim imenom i pri tom unesete ispisanu lozinku. Pristupni podaci su",
+  "name"      : "Naziv mreže",
+  "password"  : "Lozinka"
+}

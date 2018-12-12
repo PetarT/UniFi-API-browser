@@ -5,5 +5,6 @@
     "site"               : "b8vx4vaf",
     "sys_admin_username" : "administrator",
     "sys_admin_password" : "testunifi12",
-    "printer_ip"         : "192.168.88.159"
+    "printer_ip"         : "192.168.88.159",
+    "wireless_name"      : "HotelWing"
 }

@@ -2,9 +2,6 @@
 
 namespace WingWifi;
 
-use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
-use Mike42\Escpos\Printer;
-
 /**
  * Class Application
  *
@@ -104,17 +101,13 @@ class Application
                             }
                         }
                     } elseif ($requestData->action == 'printVoucher') {
-                        if (isset($requestData->code) && !empty($requestData->code)) {
-                            $connector = new NetworkPrintConnector(self::$config->printer_ip);
-                            $printer   = new Printer($connector);
-                            $printer->initialize();
-                            $printer->feed(2);
-                            $printer->text($requestData->code);
-                            $printer->feed(2);
-                            $printer->qrCode($requestData->code, Printer::QR_ECLEVEL_L, $size = 8);
-                            $printer->cut();
-                            $printer->pulse();
-                            $printer->close();
+                        $status = $this->uniFiController->printVoucher($requestData, self::$config);
+
+                        if ($status == false) {
+                            $response = false;
+                            $msg      = 'Error printing the voucher!';
+                        } else {
+                            $msg = 'Voucher successfully printed';
                         }
                     }
                 }
@@ -250,10 +243,8 @@ class Application
     {
         $loader = new \Twig_Loader_Filesystem(SITE_BASE . '/views');
         $twig   = new \Twig_Environment($loader, array(
-            'cache' => SITE_BASE . '/cache',
-            'debug' => true
+            'cache' => SITE_BASE . '/cache'
         ));
-        $twig->addExtension(new \Twig_Extension_Debug());
 
         $this->twig = $twig;
     }

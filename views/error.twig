@@ -1,16 +1,17 @@
 {% extends "base.twig" %}
 
 {% block main %}
-    <div class="row">
-        <div class="error-template">
+    <div class="card text-center">
+        <div class="card-header">
             <h1>Greška!</h1>
-            <h2>Došlo je do problema pri izvršavanju! </h2>
-            <div class="error-details">
-                {{ errorMsg }}
-            </div>
-            <div class="error-actions">
-                <a href="{{ home }}" class="btn btn-primary btn-lg"><span class="fa fa-home"></span> Vrati me na početnu stranicu</a>
-            </div>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Došlo je do problema pri izvršavanju!</h5>
+            <p class="card-text">{{ errorMsg }}</p>
+            <a href="{{ home }}" class="btn btn-primary btn-lg"><span class="fa fa-home"></span> Vrati me na početnu stranicu</a>
+        </div>
+        <div class="card-footer text-muted">
+            <p>Greška je nastala u <b>{{ date('now', 'Europe/Belgrade')|date("H:i d.m.Y.") }}</b></p>
         </div>
     </div>
 {% endblock %}
