@@ -2,6 +2,7 @@
 
 namespace WingWifi\Controllers;
 
+use Mike42\Escpos\EscposImage;
 use UniFi_API\Client;
 use WingWifi\Application;
 use WingWifi\Utilities\RequestDataUtility;
@@ -24,6 +25,18 @@ class UniFiController
      * @var  array
      */
     private static $sites = null;
+
+    /**
+     * Printout language.
+     *
+     * @var  array  Array of language objects.
+     */
+    private $language = array();
+
+    /**
+     * Number of chars which can be printed in one line by printer.
+     */
+    const LINE_SIZE = 56;
 
     /**
      * Init method for UniFi client.
@@ -154,11 +167,25 @@ class UniFiController
                 $connector = new NetworkPrintConnector($config->printer_ip);
                 $printer   = new Printer($connector);
                 $lang      = empty($requestData->lang) ? 'en' : $requestData->lang;
+                $logo      = EscposImage::load(SITE_BASE . '/assets/img/logo.png', false);
+                $msg       = $this->generateMessage($lang);
+                $accessMsg = $this->generateAccessData($requestData->code, $config->wireless_name, $lang);
 
                 $printer->initialize();
+                $printer->setFont(Printer::FONT_B);
+                $printer->text($this->generateHorizontalLine());
                 $printer->feed(1);
-                $printer->text($this->generateMessage($requestData->code, $config->wireless_name, $lang));
+                $printer->graphics($logo);
                 $printer->feed(1);
+                $printer->text($msg);
+                $printer->feed(1);
+                $printer->setTextSize(2,2);
+                $printer->setLineSpacing(70);
+                $printer->text($accessMsg);
+                $printer->feed(1);
+                $printer->setTextSize(1,1);
+                $printer->setLineSpacing();
+                $printer->text($this->generateHorizontalLine());
                 $printer->cut();
                 $printer->pulse();
                 $printer->close();
@@ -223,31 +250,98 @@ class UniFiController
     }
 
     /**
+     * Load language strings.
+     *
+     * @param   string  $lang  Language code.
+     *
+     * @return  object  Language object strings.
+     */
+    private function getLanguage($lang = 'en')
+    {
+        if (!isset($this->language[$lang]) || empty($this->language[$lang])) {
+            $this->language[$lang] = \json_decode(\file_get_contents(SITE_BASE . '/assets/lang/' . $lang . '.json'));
+        }
+
+        return $this->language[$lang];
+    }
+
+    /**
      * Function for generating printout message.
      *
-     * @param   string  $code  Voucher code, wireless password.
-     * @param   string  $wifi  Wireless client name.
      * @param   string  $lang  Language to use on generating the message.
      *
      * @return  string  String for printout.
      */
-    private function generateMessage($code, $wifi = 'WingWifi', $lang = 'en')
+    private function generateMessage($lang = 'en')
     {
-        if (!empty($lang)) {
-            $lang = \json_decode(\file_get_contents(SITE_BASE . '/assets/lang/' . $lang . '.json'));
-        } else {
-            $lang = \json_decode(\file_get_contents(SITE_BASE . '/assets/lang/en.json'));
-        }
-
+        $lang    = $this->getLanguage($lang);
         $message = '';
 
-        if (!empty($code) && !empty($wifi) && !empty($lang)) {
-            $message .= $lang->greetings . ",\n\n";
-            $message .= $lang->message . ":\n\n";
-            $message .= $lang->name . ": " . $wifi . "\n";
+        if (!empty($lang)) {
+            $message .= $lang->greetings . ",\n";
+            $words    = \explode(' ', $lang->message);
+            $line     = "";
+            $i        = 0;
+
+            if (!empty($words)) {
+                foreach ($words as $word) {
+                    if (\strlen($line) + \strlen($word) + 1 <= self::LINE_SIZE) {
+                        $line .= ' ' . $word;
+
+                        if ($i == \count($words) - 1) {
+                            $message .= $line;
+                        }
+                    } else {
+                        $line .= "\n";
+                        $message .= $line;
+                        $line = $word;
+                    }
+
+                    $i++;
+                }
+            }
+        }
+
+        return $message;
+    }
+
+    /**
+     * Function for generating printout message.
+     *
+     * @param   string  $code  Voucher code, wireless password.
+     * @param   string  $ssid  Wireless client name.
+     * @param   string  $lang  Language to use on generating the message.
+     *
+     * @return  string  String for printout.
+     */
+    private function generateAccessData($code, $ssid = 'WingWifi', $lang = 'en')
+    {
+        $lang    = $this->getLanguage($lang);
+        $message = '';
+
+        if (!empty($code) && !empty($ssid) && !empty($lang)) {
+            $message .= $lang->name . ": " . $ssid . "\n";
             $message .= $lang->password . ": " . $code;
         }
 
         return $message;
+    }
+
+    /**
+     * Function for generating horizontal line for split up.
+     *
+     * @param   string  $lineChar  Line separation char.
+     *
+     * @return  string
+     */
+    private function generateHorizontalLine($lineChar = '=')
+    {
+        $line = "";
+
+        for ($i = 0; $i < self::LINE_SIZE; $i++) {
+            $line .= $lineChar;
+        }
+
+        return $line;
     }
 }
