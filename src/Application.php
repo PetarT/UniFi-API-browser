@@ -124,8 +124,9 @@ class Application
 
                         if (!empty($requestData->name)) {
                             $this->uniFiController->setClientSite($requestData->name);
-                            $attr['site']     = $this->uniFiController->getSiteInfo();
-                            $attr['vouchers'] = $this->uniFiController->getVouchersList();
+                            $attr['site']       = $this->uniFiController->getSiteInfo();
+                            $attr['vouchers']   = $this->uniFiController->getVouchersList();
+                            $attr['canSeeList'] = empty(self::$config->site);
                         }
 
                         break;
@@ -245,6 +246,7 @@ class Application
         $twig   = new \Twig_Environment($loader, array(
             'cache' => SITE_BASE . '/cache'
         ));
+        $twig->addExtension(new Utilities\TwigExtensionUtility());
 
         $this->twig = $twig;
     }

@@ -1,31 +1,51 @@
 {% extends "base.twig" %}
+{% block header %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="/assets/css/custom.css" />
+    <link rel="stylesheet" href="/assets/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="/assets/css/flag-icon.min.css" />
+    <link rel="stylesheet" href="/assets/css/datatables.min.css" />
+    <title>Čvor {{ site.desc }} | Lista vaučera</title>
+{% endblock %}
 {% block title %}<h1 class="jumbotron-heading">Čvor {{ site.desc }}</h1><br /><h3>Lista vaučera</h3>{% endblock %}
 {% block main %}
 {% if vouchers is not empty %}
+<div class="row float-right">
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#voucher_add"><i class="fas fa-passport"></i> Kreiraj vaučer</button>
+        <button type="button" class="btn btn-default" onclick="window.location.reload()"><i class="fas fa-sync"></i> Osveži listu</button>
+        {% if canSeeList %}<button type="button" class="btn btn-secondary" onclick="location='{{ home }}/index.php?view=sites_list'"><i class="fas fa-sitemap"></i> Nazad na listu čvorova</button>{% endif %}
+    </div>
+</div>
+<div class="clearfix"></div>
+<br />
 <div class="row">
-    <div class="table-responsive">
-        <table class="table table-hover">
+    <div class="table-responsive" id="vouchers-div">
+        <table class="table table-hover" id="vouchers-table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Kod</th>
                     <th scope="col">Kreiran</th>
                     <th scope="col">Trajanje</th>
-                    <th scope="col">Akcije</th>
+                    <th class="text-center" scope="col">Akcije</th>
                 </tr>
             </thead>
             <tbody>
                 {% set counter = 1 %}
                 {% for voucher in vouchers %}
-                <tr>
+                <tr {% if voucher.invalid %}class="table-danger"{% endif %}>
                     <th scope="row">{{ counter }}</th>
                     <td>{{ voucher.code }}</td>
                     <td>{{ voucher.create_time|date('H:i d.m.Y') }}</td>
-                    <td>{{ voucher.duration }} minuta</td>
-                    <td>
+                    <td>{% if voucher.invalid %}Vaučer je neaktivan!{% else %}{{ voucher.duration|parseElapsedTime }}{% endif %}</td>
+                    <td class="text-center">
                         <div class="btn-group btn-group-xs">
                             <button type="button" class="btn btn-xs" title="Obriši" onclick="removeVoucher('{{ voucher._id }}')"><i class="fas fa-trash"></i></button>
-                            <button type="button" class="btn btn-xs" title="Štampaj" data-toggle="modal" data-target="#select_lang" data-code="{{ voucher.code }}"><i class="fas fa-print"></i></button>
+                            {% if not voucher.invalid %}<button type="button" class="btn btn-xs" title="Štampaj" data-toggle="modal" data-target="#select_lang" data-code="{{ voucher.code }}"><i class="fas fa-print"></i></button>{% endif %}
                         </div>
                     </td>
                 </tr>
@@ -35,12 +55,7 @@
         </table>
     </div>
 </div>
-<div class="row">
-    <div class="btn-group">
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#voucher_add">Kreiraj vaučer</button>
-        <button type="button" class="btn btn-secondary" onclick="location='{{ home }}/index.php?view=sites_list'">Nazad na listu čvorova</button>
-    </div>
-</div>
+<br />
 {% else %}
 <div class="row w-100">
     <div class="alert alert-dark w-100" role="alert">
@@ -48,30 +63,67 @@
     </div>
 </div>
 {% endif %}
-<script type="text/javascript">
-    function removeVoucher(id) {
-        jQuery.ajax({
-            url  : '{{ home }}/index.php',
-            method: 'GET',
-            dataType: 'json',
-            data : {
-                id     : id,
-                action : 'removeVoucher',
-                type   : 'ajax',
-                site   : '{{ site.name }}'
-            }
-        }).done(function (data) {
-            if (data.status == true) {
-                location.reload(true);
-            } else {
-                // raise warning
-                console.log(data.message);
-            }
-        });
-    }
-</script>
 {% endblock %}
 {% block modals %}
 {% include("layouts/add_voucher.twig") %}
 {% include("layouts/select_lang.twig") %}
+{% endblock %}
+{% block scripts %}
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/custom.js"></script>
+<script src="/assets/js/bootstrap-select.min.js"></script>
+<script src="/assets/js/datatables.min.js"></script>
+<script src="/assets/js/datatables-bootstrap.min.js"></script>
+    <script type="text/javascript">
+        var time;
+        function removeVoucher(id) {
+            jQuery.ajax({
+                url  : '{{ home }}/index.php',
+                method: 'GET',
+                dataType: 'json',
+                data : {
+                    id     : id,
+                    action : 'removeVoucher',
+                    type   : 'ajax',
+                    site   : '{{ site.name }}'
+                }
+            }).done(function (data) {
+                if (data.status == true) {
+                    location.reload(true);
+                } else {
+                    // raise warning
+                    console.log(data.message);
+                }
+            });
+        }
+        function initDataTable() {
+            jQuery('#vouchers-table').DataTable({
+                language     : {
+                    "url": "{{ home }}/assets/lang/datatable/rs.json"
+                },
+                searching    : false,
+                columnDefs   : [{
+                    orderable : false,
+                    targets   : 4
+                }],
+                lengthChange : false
+            });
+            time = new Date().getTime();
+            setTimeout(refresh, 10000);
+        }
+        function refresh() {
+            if (new Date().getTime() - time >= 60000) {
+                jQuery('#vouchers-div').load(document.URL +  ' #vouchers-div', initDataTable);
+            } else {
+                setTimeout(refresh, 10000);
+            }
+        }
+        jQuery(document).ready(function () {
+            initDataTable();
+            jQuery(document.body).bind("mousemove keypress", function(e) {
+                time = new Date().getTime();
+            });
+        });
+    </script>
 {% endblock %}

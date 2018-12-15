@@ -1,6 +1,6 @@
 {
-  "greetings" : "Greetings",
-  "message"   : "This voucher contains wireless access name and password for accessing our WiFi internet. Please use the following data to access the internet",
-  "name"      : "Client name",
-  "password"  : "Password"
+  "greetings" : "Selamlar",
+  "message"   : "Bu kupon bizim WiFi internet erişim için kablosuz erişim adı ve şifre içerir. İnternete erişmek için lütfen aşağıdaki verileri kullanın",
+  "name"      : "SSID",
+  "password"  : "şifre"
 }

@@ -10,14 +10,14 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="form-group row">
-                        <label for="time" class="col-sm-4 col-form-label">Jezik:</label>
-                        <select class="custom-select col-sm-8" id="lang">
-                            <option value="rs" selected>Srpski</option>
-                            <option value="en">Engleski </option>
-                            <option value="de">Nemački </option>
-                            <option value="fr">Francuski </option>
-                            <option value="es">Španski </option>
-                            <option value="tr">Turski </option>
+                        <label for="lang" class="col-sm-4 col-form-label">Jezik:</label>
+                        <select class="col-sm-8 selectpicker" id="lang">
+                            <option value="rs" selected data-content='<i class="flag-icon flag-icon-rs"></i> Srpski'></option>
+                            <option value="en" data-content='<i class="flag-icon flag-icon-gb"></i> Engleski'></option>
+                            <option value="de" data-content='<i class="flag-icon flag-icon-de"></i> Nemački'></option>
+                            <option value="fr" data-content='<i class="flag-icon flag-icon-fr"></i> Francuski'></option>
+                            <option value="es" data-content='<i class="flag-icon flag-icon-es"></i> Španski'></option>
+                            <option value="tr" data-content='<i class="flag-icon flag-icon-tr"></i> Turski'></option>
                         </select>
                         <input type="hidden" id="voucher_code" />
                     </div>
@@ -25,7 +25,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
-                <button type="button" class="btn btn-primary" onclick="printVoucher()">Kreiraj</button>
+                <button type="button" class="btn btn-primary" onclick="printVoucher()">Štampaj</button>
             </div>
         </div>
     </div>

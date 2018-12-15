@@ -1,6 +1,6 @@
 {
-  "greetings" : "Greetings",
-  "message"   : "This voucher contains wireless access name and password for accessing our WiFi internet. Please use the following data to access the internet",
-  "name"      : "Client name",
-  "password"  : "Password"
+  "greetings" : "Hola",
+  "message"   : "Este cupón contiene el nombre de acceso inalámbrico y una contraseña para acceder a nuestro servicio de Internet Wi-Fi. Por favor, use los siguientes datos para acceder a internet",
+  "name"      : "SSID",
+  "password"  : "Contraseña"
 }

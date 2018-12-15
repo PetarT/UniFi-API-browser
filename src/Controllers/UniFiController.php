@@ -116,10 +116,27 @@ class UniFiController
      * Function for getting list of pending vouchers.
      *
      * @return  array  List of vouchers.
+     *
+     * @throws  \Exception
      */
     public function getVouchersList()
     {
-        return self::$uniFiClient->stat_voucher();
+        $vouchers = self::$uniFiClient->stat_voucher();
+        $date     = new \DateTime();
+
+        foreach ($vouchers as $voucher) {
+            $interval = new \DateInterval('PT' . $voucher->duration . 'M');
+            $created  = new \DateTime();
+            $created->setTimestamp($voucher->create_time);
+
+            if ($created->add($interval) < $date) {
+                $voucher->invalid = true;
+            } else {
+                $voucher->invalid = false;
+            }
+        }
+
+        return $vouchers;
     }
 
     /**
