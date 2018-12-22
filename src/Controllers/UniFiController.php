@@ -152,7 +152,7 @@ class UniFiController
      *
      * @return  array|bool  False if action didn't complete, otherwise info about created vouchers.
      */
-    public function generateVoucher($minutes = 60, $count = 4, $numberOfUsage = 0, $note = null, $upSpeed = null, $downSpeed = null, $totalMB = null)
+    public function generateVoucher($minutes = 60, $count = 1, $numberOfUsage = 4, $note = null, $upSpeed = null, $downSpeed = null, $totalMB = null)
     {
         return self::$uniFiClient->create_voucher($minutes, $count, $numberOfUsage, $note, $upSpeed, $downSpeed, $totalMB);
     }
