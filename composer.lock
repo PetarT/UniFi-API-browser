@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "bfec63dcab3d0a7aa83e9020cf87e989",
     "packages": [
         {
             "name": "art-of-wifi/unifi-api-client",
-            "version": "v1.1.37",
+            "version": "v1.1.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Art-of-WiFi/UniFi-API-client.git",
-                "reference": "5389f3a486c7b598fd87c1e36b6b639e239138dd"
+                "reference": "77cc1d87a413a466a460e0254a57d38d1cd22ab4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Art-of-WiFi/UniFi-API-client/zipball/5389f3a486c7b598fd87c1e36b6b639e239138dd",
-                "reference": "5389f3a486c7b598fd87c1e36b6b639e239138dd",
+                "url": "https://api.github.com/repos/Art-of-WiFi/UniFi-API-client/zipball/77cc1d87a413a466a460e0254a57d38d1cd22ab4",
+                "reference": "77cc1d87a413a466a460e0254a57d38d1cd22ab4",
                 "shasum": ""
             },
             "require": {
@@ -51,7 +51,7 @@
                 "ubiquiti",
                 "unifi"
             ],
-            "time": "2018-11-05T11:18:10+00:00"
+            "time": "2018-12-14T10:27:20+00:00"
         },
         {
             "name": "kint-php/kint",

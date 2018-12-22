@@ -101,11 +101,19 @@ class Application
                             }
                         }
                     } elseif ($requestData->action == 'printVoucher') {
-                        $status = $this->uniFiController->printVoucher($requestData, self::$config);
+                    	 try {
+		                    $status = $this->uniFiController->printVoucher($requestData, self::$config);
+	                    } catch(\Exception $e) {
+		                    $status = false;
+		                    $msg    = $e->getMessage();
+	                    }
 
                         if ($status == false) {
                             $response = false;
-                            $msg      = 'Error printing the voucher!';
+
+                            if (empty($msg)) {
+	                            $msg = 'Error printing the voucher!';
+                            }
                         } else {
                             $msg = 'Voucher successfully printed';
                         }

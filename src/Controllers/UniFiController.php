@@ -152,7 +152,7 @@ class UniFiController
      *
      * @return  array|bool  False if action didn't complete, otherwise info about created vouchers.
      */
-    public function generateVoucher($minutes = 60, $count = 1, $numberOfUsage = 0, $note = null, $upSpeed = null, $downSpeed = null, $totalMB = null)
+    public function generateVoucher($minutes = 60, $count = 4, $numberOfUsage = 0, $note = null, $upSpeed = null, $downSpeed = null, $totalMB = null)
     {
         return self::$uniFiClient->create_voucher($minutes, $count, $numberOfUsage, $note, $upSpeed, $downSpeed, $totalMB);
     }
@@ -176,42 +176,40 @@ class UniFiController
      * @param   object              $config       Config object.
      *
      * @return  bool  True on success, false otherwise.
+     *
+     * @throws  \Exception
      */
     public function printVoucher($requestData, $config)
     {
-        try {
-            if (!empty($requestData->code)) {
-                $connector = new NetworkPrintConnector($config->printer_ip);
-                $printer   = new Printer($connector);
-                $lang      = empty($requestData->lang) ? 'en' : $requestData->lang;
-                $logo      = EscposImage::load(SITE_BASE . '/assets/img/logo.png', false);
-                $msg       = $this->generateMessage($lang);
-                $accessMsg = $this->generateAccessData($requestData->code, $config->wireless_name, $lang);
+	    if (!empty($requestData->code)) {
+		    $connector = new NetworkPrintConnector($config->printer_ip);
+		    $printer   = new Printer($connector);
+		    $lang      = empty($requestData->lang) ? 'en' : $requestData->lang;
+		    $logo      = EscposImage::load(SITE_BASE . '/assets/img/logo.png', false);
+		    $msg       = $this->generateMessage($lang);
+		    $accessMsg = $this->generateAccessData($requestData->code, $config->wireless_name, $lang);
 
-                $printer->initialize();
-                $printer->setFont(Printer::FONT_B);
-                $printer->text($this->generateHorizontalLine());
-                $printer->feed(1);
-                $printer->graphics($logo);
-                $printer->feed(1);
-                $printer->text($msg);
-                $printer->feed(1);
-                $printer->setTextSize(2,2);
-                $printer->setLineSpacing(70);
-                $printer->text($accessMsg);
-                $printer->feed(1);
-                $printer->setTextSize(1,1);
-                $printer->setLineSpacing();
-                $printer->text($this->generateHorizontalLine());
-                $printer->cut();
-                $printer->pulse();
-                $printer->close();
-            } else {
-                return false;
-            }
-        } catch (\Exception $e) {
-            return false;
-        }
+		    $printer->initialize();
+		    $printer->setFont(Printer::FONT_B);
+		    $printer->text($this->generateHorizontalLine());
+		    $printer->feed(1);
+		    $printer->graphics($logo);
+		    $printer->feed(1);
+		    $printer->text($msg);
+		    $printer->feed(1);
+		    $printer->setTextSize(2,2);
+		    $printer->setLineSpacing(70);
+		    $printer->text($accessMsg);
+		    $printer->feed(1);
+		    $printer->setTextSize(1,1);
+		    $printer->setLineSpacing();
+		    $printer->text($this->generateHorizontalLine());
+		    $printer->cut();
+		    $printer->pulse();
+		    $printer->close();
+	    } else {
+		    return false;
+	    }
 
         return true;
     }

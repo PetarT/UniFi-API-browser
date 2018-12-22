@@ -1,10 +1,10 @@
 {
-    "username"           : "administrator",
-    "password"           : "testunifi12",
-    "location"           : "https://172.16.14.100:8443/",
+    "username"           : "apiAdministratorWotelWing",
+    "password"           : "tW378Y8XmFhYEJ74",
+    "location"           : "https://172.16.14.10:8443/",
     "site"               : "b8vx4vaf",
     "sys_admin_username" : "administrator",
     "sys_admin_password" : "testunifi12",
-    "printer_ip"         : "192.168.88.159",
-    "wireless_name"      : "HotelWing"
+    "printer_ip"         : "10.4.11.27",
+    "wireless_name"      : "Wing Club Hotel"
 }
